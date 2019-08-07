@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cursive-ide</groupId>
+  <artifactId>defclass-repro</artifactId>
+  <version>1.0-SNAPSHOT</version>
+
+  <repositories>
+    <repository>
+      <id>repo.cursive-ide.com</id>
+      <url>s3://repo.cursive-ide.com/release</url>
+    </repository>
+    <repository>
+      <id>intellij</id>
+      <url>https://www.jetbrains.com/intellij-repository/releases</url>
+    </repository>
+    <repository>
+      <id>intellij-deps</id>
+      <url>https://jetbrains.bintray.com/intellij-third-party-dependencies</url>
+    </repository>
+  </repositories>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.cursive-ide</groupId>
+      <artifactId>clojure</artifactId>
+      <version>1.10.1</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jetbrains.intellij.platform</groupId>
+      <artifactId>ide</artifactId>
+      <version>192.5728.98</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.pty4j</groupId>
+          <artifactId>pty4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.jetbrains.rd</groupId>
+          <artifactId>rd-swing</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.jetbrains.rd</groupId>
+          <artifactId>rd-core</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>com.jetbrains.intellij.java</groupId>
+      <artifactId>java-execution</artifactId>
+      <version>192.5728.98</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.pty4j</groupId>
+          <artifactId>pty4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.jetbrains.rd</groupId>
+          <artifactId>rd-swing</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.jetbrains.rd</groupId>
+          <artifactId>rd-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.jediterm</groupId>
+          <artifactId>jediterm-pty</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>com.theoryinpractise</groupId>
+        <artifactId>clojure-maven-plugin</artifactId>
+        <version>1.8.3</version>
+        <extensions>true</extensions>
+
+        <configuration>
+          <sourceDirectories>
+            <sourceDirectory>src/main/clojure</sourceDirectory>
+          </sourceDirectories>
+          <testSourceDirectories>
+            <testSourceDirectory>src/test/clojure</testSourceDirectory>
+          </testSourceDirectories>
+        </configuration>
+      </plugin>
+    </plugins>
+
+    <extensions>
+      <extension>
+        <groupId>org.kuali.maven.wagons</groupId>
+        <artifactId>maven-s3-wagon</artifactId>
+        <version>1.2.1</version>
+      </extension>
+    </extensions>
+  </build>
+
+</project>
