@@ -71,6 +71,29 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>com.jetbrains.intellij.java</groupId>
+      <artifactId>java</artifactId>
+      <version>192.5728.98</version>
+      <exclusions>
+        <exclusion>
+          <groupId>org.jetbrains.pty4j</groupId>
+          <artifactId>pty4j</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.jetbrains.rd</groupId>
+          <artifactId>rd-swing</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>com.jetbrains.rd</groupId>
+          <artifactId>rd-core</artifactId>
+        </exclusion>
+        <exclusion>
+          <groupId>org.jetbrains.jediterm</groupId>
+          <artifactId>jediterm-pty</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
 
   <build>
@@ -89,6 +112,26 @@
             <testSourceDirectory>src/test/clojure</testSourceDirectory>
           </testSourceDirectories>
         </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>add-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/clojure</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
 
